@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "cd4825e8-80fb-4490-bc6e-40218a6ce362",
+		"name": "API - Qa.Coders NodeJS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11126906"
+	},
+	"item": [
+		{
+			"name": "Recomendation - Sucesso",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function firstName(){",
+							"\t",
+							"\tvar firstName = [ \"Maria\", \"João\", \"Ana\", \"Pedro\", \"Carla\", \"Lucas\", \"Mariana\", \"Paulo\", \"Camila\", \"Rafael\", \"Juliana\", \"Gustavo\", \"Larissa\", \"Fernando\", \"Amanda\", \"Diego\", \"Isabela\", \"Ricardo\", \"Natália\", \"Henrique\"];",
+							"",
+							"\tvar randomItem = firstName[Math.floor(Math.random() * firstName.length)];",
+							"",
+							"\treturn randomItem;",
+							"}",
+							"",
+							"pm.environment.set(\"FirstName\", firstName());",
+							"",
+							"function lastName(){",
+							"\t",
+							"\tvar lastName = [\"Silva\", \"Santos\", \"Oliveira\", \"Souza\", \"Rodrigues\", \"Almeida\", \"Costa\", \"Pereira\", \"Carvalho\", \"Ferreira\", \"Gomes\", \"Martins\", \"Rocha\", \"Ribeiro\", \"Alves\", \"Lima\", \"Sousa\", \"Fernandes\", \"Pinto\", \"Cunha\"];",
+							"",
+							"\tvar randomItem = lastName[Math.floor(Math.random() * lastName.length)];",
+							"",
+							"\treturn randomItem;",
+							"}",
+							"",
+							"pm.environment.set(\"LastName\", lastName());",
+							"",
+							"pm.environment.set(\"FullName\", pm.variables.get(\"FirstName\")+ \" \" +pm.variables.get(\"LastName\"));",
+							"",
+							"pm.environment.set(\"Description\",pm.variables.replaceIn('{{$randomLoremSentences}}'))",
+							"",
+							"pm.environment.set(\"Stars\",Math.floor(Math.random() * ( 5 * 1) + 1))",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Check Full Nams is True\", function () {",
+							"    pm.expect(pm.variables.get(\"FullName\")).to.eql(JSON.parse(responseBody).fullName);",
+							"});",
+							"",
+							"pm.test(\"Check Description is True\", function () {",
+							"    pm.expect(pm.variables.get(\"Description\")).to.eql(JSON.parse(responseBody).description);",
+							"});",
+							"",
+							"pm.test(\"Check Stars is True\", function () {",
+							"    pm.expect(pm.variables.get(\"Stars\")).to.eql(JSON.parse(responseBody).stars);",
+							"});",
+							"",
+							"pm.test(\"Check Situation is True\", function () {",
+							"    pm.expect(\"Pendente\").to.eql(JSON.parse(responseBody).situation);",
+							"});",
+							"",
+							"pm.test(\"Check Status is True\", function () {",
+							"    pm.expect(true).to.eql(JSON.parse(responseBody).status);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fullName\": \"{{FullName}}\",\n    \"description\": \"{{Description}}\",\n    \"stars\": {{Stars}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/recommendation",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"recommendation"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

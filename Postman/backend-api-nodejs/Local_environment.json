@@ -1,0 +1,33 @@
+{
+	"id": "fb35d937-1863-481e-a4e7-9c31eccfd09c",
+	"name": "Local",
+	"values": [
+		{
+			"key": "url",
+			"value": "localhost:3000",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "FullName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Description",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Stars",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-05-23T00:19:10.409Z",
+	"_postman_exported_using": "Postman/10.14.4"
+}
