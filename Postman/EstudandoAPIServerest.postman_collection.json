@@ -1,0 +1,905 @@
+{
+	"info": {
+		"_postman_id": "a59e5bd0-f208-4ee7-afa4-5daa553959bb",
+		"name": "Estudando API Serverest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11126906"
+	},
+	"item": [
+		{
+			"name": "01 - Usuários",
+			"item": [
+				{
+					"name": "01 - Cadastrar Usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"ID_User\",pm.variables.replaceIn(JSON.parse(responseBody)._id));",
+									"pm.test(\"Status code is 201 \", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Usuário Cadastrado OK\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_ADD_SUCCESS\")).to.eql(JSON.parse(responseBody).message);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									"pm.environment.set(\"name\",pm.variables.replaceIn('{{$randomFullName}}'));",
+									"pm.environment.set(\"e-mail\",pm.variables.replaceIn('{{$randomEmail}}'));",
+									"pm.environment.set(\"password\",pm.variables.replaceIn('{{$randomPassword}}'));",
+									"pm.environment.set(\"administrator\",pm.variables.replaceIn('{{$randomBoolean}}'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"{{name}}\",\n  \"email\": \"{{e-mail}}\",\n  \"password\": \"{{password}}\",\n  \"administrador\": \"true\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/usuarios",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02 - Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.environment.set(\"token\",pm.variables.replaceIn(JSON.parse(responseBody).authorization));",
+									"",
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Usuário Logado\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_LOGIN_SUCCESS\")).to.eql(JSON.parse(responseBody).message);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{e-mail}}\",\n  \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03 - Pesquisar Usuario por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Usuário Cadastrado OK\", function () {",
+									"        pm.expect(pm.variables.get(\"ID_User\")).to.eql(JSON.parse(responseBody)._id);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/usuarios/{{ID_User}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios",
+								"{{ID_User}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04 - Listar todos Usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/usuarios",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05 - Editar Usuario por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Usuário Alterado\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_REGISTER_ALTERED\")).to.eql(JSON.parse(responseBody).message);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"John Purdy\",\n  \"email\": \"Buford11@yahoo.com\",\n  \"password\": \"d0LNoME5JUOyEBT\",\n  \"administrador\": \"true\"\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/usuarios/{{ID_User}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios",
+								"{{ID_User}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06 - Deletar Usuario por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Usuário Alterado\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_REGISTER_DELETED\")).to.eql(JSON.parse(responseBody).message);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/usuarios/{{ID_User}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios",
+								"{{ID_User}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02 - Produtos",
+			"item": [
+				{
+					"name": "01 - Cadastrar Produto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"ID_Prod\",pm.variables.replaceIn(JSON.parse(responseBody)._id));",
+									"pm.test(\"Status code is 201 \", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Usuário Cadastrado OK\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_ADD_SUCCESS\")).to.eql(JSON.parse(responseBody).message);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									"pm.environment.set(\"nameProduct\",pm.variables.replaceIn('{{$randomProductName}}'));",
+									"pm.environment.set(\"price\",pm.variables.replaceIn('{{$randomInt}}'));",
+									"pm.environment.set(\"description\",pm.variables.replaceIn('{{$randomLoremWords}}'));",
+									"pm.environment.set(\"quantity\",pm.variables.replaceIn('{{$randomInt}}'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"{{nameProduct}}\",\n  \"preco\": {{price}},\n  \"descricao\": \"{{description}}\",\n  \"quantidade\": {{quantity}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/produtos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02 - Pesquisar Produto por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Produto Localizado\", function () {",
+									"        pm.expect(pm.variables.get(\"ID_Prod\")).to.eql(JSON.parse(responseBody)._id);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/produtos/{{ID_Prod}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"produtos",
+								"{{ID_Prod}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03 - Listar todos Produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/produtos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04 - Editar Produto por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Usuário Alterado\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_REGISTER_ALTERED\")).to.eql(JSON.parse(responseBody).message);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Tasty Plastic Fish\",\n  \"preco\": 61,\n  \"descricao\": \"impedit aut quis\",\n  \"quantidade\": 2\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/produtos/{{ID_Prod}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"produtos",
+								"{{ID_Prod}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05 - Deletar Produto por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Usuário Alterado\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_REGISTER_DELETED\")).to.eql(JSON.parse(responseBody).message);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/produtos/{{ID_Prod}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"produtos",
+								"{{ID_Prod}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03 - Carrinhos",
+			"item": [
+				{
+					"name": "01 - Cadastrar Produtos no Carrinho",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"ID_Car\",pm.variables.replaceIn(JSON.parse(responseBody)._id));",
+									"pm.test(\"Status code is 201 \", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Usuário Cadastrado OK\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_ADD_SUCCESS\")).to.eql(JSON.parse(responseBody).message);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://serverest.dev/produtos\", function (err, response) {",
+									"    var base = response.json();",
+									"    const listProduct = [];",
+									"",
+									"    for (let i = 0; i < base.produtos.length; i++) {",
+									"        listProduct.push(base.produtos[i]._id);",
+									"    }",
+									"",
+									"    function pegarID() {",
+									"        randomID = listProduct[Math.floor(Math.random() * listProduct.length)];",
+									"        return randomID;",
+									"    }",
+									"",
+									"    pm.environment.set(\"ID_Prod2\", pegarID());",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"produtos\": [\n    {\n      \"idProduto\": \"{{ID_Prod}}\",\n      \"quantidade\": 1\n    },\n    {\n      \"idProduto\": \"{{ID_Prod2}}\",\n      \"quantidade\": 3\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/carrinhos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carrinhos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02 - Pesquisar Carrinho por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Carrinho Encontrado\", function () {",
+									"        pm.expect(pm.variables.get(\"ID_Car\")).to.eql(JSON.parse(responseBody)._id);",
+									"});",
+									"",
+									"pm.test(\"Carrinho Pertencen ao usuário logado\", function () {",
+									"        pm.expect(pm.variables.get(\"ID_User\")).to.eql(JSON.parse(responseBody).idUsuario);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/carrinhos/{{ID_Car}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carrinhos",
+								"{{ID_Car}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03 - Listar Carrinhos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									"const all_products = {",
+									"  url : 'https://serverest.dev/produtos',",
+									"  method : 'GET'",
+									"};",
+									"pm.sendRequest(all_products, function (err, response) {",
+									"    var data = response.json();",
+									"    for(var i = 0; i < data.length; i++){",
+									"        pm.environment.set(\"ID_Prod2\", data[i]);",
+									"        return;",
+									"    }",
+									"});",
+									"console.log(\"ID_Prod2\" + pm.variables.get(\"ID_Prod2\"))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/carrinhos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carrinhos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04 - Concluir Compra",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Carrinho Fechado\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_REGISTER_ALTERED\")).to.eql(JSON.parse(responseBody).message);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/carrinhos/concluir-compra",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carrinhos",
+								"concluir-compra"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05 - Cancelar Compra",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Carrinho cancelado e produto estornado\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_REGISTER_DELETED_REFUNDED_PRODUCTS\")).to.eql(JSON.parse(responseBody).message);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/carrinhos/cancelar-compra",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carrinhos",
+								"cancelar-compra"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
