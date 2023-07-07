@@ -1,0 +1,15 @@
+
+default: -p pretty --publish-quiet -p html -p development -o chrome
+
+pretty: --format pretty
+development: ENVIRONMENT=development
+production: --publish-quiet ENVIRONMENT=production
+
+chrome: BROWSER=chrome
+firefox: BROWSER=firefox
+edge: BROWSER=edge
+safari: BROWSER=safari
+chrome_headless: BROWSER=chrome_headless
+headless: BROWSER=headless
+
+html: --format html --out=features/reports/report.html 
