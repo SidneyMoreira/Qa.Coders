@@ -1,0 +1,733 @@
+{
+	"info": {
+		"_postman_id": "241917c5-6a04-4cc4-bcfa-9841b45a2eb0",
+		"name": "Treinamento Teste API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11126906",
+		"_collection_link": "https://kadarphoenix.postman.co/workspace/Qa.coders~4fe26b93-b7ab-4fdc-8c47-3c7d3e5b4569/collection/11126906-241917c5-6a04-4cc4-bcfa-9841b45a2eb0?action=share&creator=11126906&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Cadastro de Usuário",
+			"item": [
+				{
+					"name": "Nome completo Obrigatório",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function firstName(){",
+									"\t",
+									"\tvar firstName = [ \"Maria\",\"João\",\"Ana\",\"Pedro\",\"Carla\",\"Lucas\",\"Mariana\",\"Paulo\",\"Camila\",\"Rafael\",\"Juliana\",\"Gustavo\",\"Larissa\",\"Fernando\",\"Amanda\",\"Diego\",\"Isabela\",\"Ricardo\",\"Natália\",\"Henrique\",\"Lívia\",\"Roberto\",\"Sofia\",\"Eduardo\",\"Vitória\",\"Fábio\",\"Mariana\",\"André\",\"Letícia\",\"Rodrigo\",\"Lara\",\"Guilherme\",\"Bianca\",\"Miguel\",\"Alice\",\"Leonardo\",\"Laura\",\"Daniel\",\"Beatriz\",\"Felipe\",\"Luiza\",\"Arthur\",\"Helena\",\"Gabriel\",\"Valentina\",\"Bernardo\",\"Sophia\",\"Vitor\",\"Clara\",\"Francisco\",\"Yasmin\",\"Enzo\",\"Isabel\",\"Isabella\",\"Lorenzo\",\"Joana\",\"Samuel\",\"Melissa\",\"Otávio\",\"Ana\",\"Breno\",\"Cecília\",\"Benjamin\",\"Luana\",\"Mariane\",\"Davi\",\"Nathália\",\"Raul\",\"Isadora\",\"Marcelo\",\"Luna\",\"Nicolas\",\"Laís\",\"Augusto\",\"Stella\",\"Ruan\",\"Gabriela\",\"Luciano\",\"Evelyn\",\"Thiago\",\"Lorena\",\"Vinícius\",\"Catarina\",\"Murilo\",\"Pietra\",\"Tomás\",\"Carolina\",\"Caio\",\"Manuela\",\"Emanuelly\",\"Lavinia\",\"Lucca\",\"Mirella\",\"Kevin\",\"Rebeca\",\"Anthony\",\"Júlia\"];",
+									"",
+									"\tvar randomItem = firstName[Math.floor(Math.random() * firstName.length)];",
+									"",
+									"\treturn randomItem;",
+									"}",
+									"",
+									"pm.environment.set(\"FirstName\", firstName());",
+									"",
+									"function lastName(){",
+									"\t",
+									"\tvar lastName = [\"Silva\",\"Santos\",\"Oliveira\",\"Souza\",\"Rodrigues\",\"Almeida\",\"Costa\",\"Pereira\",\"Carvalho\",\"Ferreira\",\"Gomes\",\"Martins\",\"Rocha\",\"Ribeiro\",\"Alves\",\"Lima\",\"Sousa\",\"Fernandes\",\"Pinto\",\"Cunha\",\"Mendes\",\"Barbosa\",\"Saraiva\",\"Machado\",\"Cardoso\",\"Nogueira\",\"Ramos\",\"Coelho\",\"Araújo\",\"Castro\",\"Fonseca\",\"Rocha\",\"Moreira\",\"Figueiredo\",\"Gonçalves\",\"Monteiro\",\"Marques\",\"Peixoto\",\"Morais\",\"Lopes\",\"Vieira\",\"Tavares\",\"Correia\",\"Neves\",\"Nunes\",\"Cavalcanti\",\"Andrade\",\"Freitas\",\"Coutinho\",\"Rezende\",\"Macedo\",\"Borges\",\"Barros\",\"Melo\",\"Barbosa\",\"Campos\",\"Lemos\",\"Braga\",\"Teixeira\",\"Dias\",\"Albuquerque\",\"Sampaio\",\"Moura\",\"Rocha\",\"Silveira\",\"Aguiar\",\"Abreu\",\"Lima\",\"Pacheco\",\"Vargas\",\"Farias\",\"Moraes\",\"Ferreira\",\"Gusmão\",\"Sousa\",\"Azevedo\",\"Dantas\",\"Cavalcante\",\"Batista\",\"Peixoto\",\"Pires\",\"Leite\",\"Ramos\",\"Macedo\",\"Sales\",\"Carneiro\",\"Monteiro\",\"Goulart\",\"Cruz\",\"Fialho\",\"Xavier\",\"Prado\",\"Valente\",\"Furtado\",\"Vieira\"];",
+									"",
+									"\tvar randomItem = lastName[Math.floor(Math.random() * lastName.length)];",
+									"",
+									"\treturn randomItem;",
+									"}",
+									"",
+									"pm.environment.set(\"LastName\", lastName());",
+									"",
+									"pm.environment.set(\"FullName\", pm.variables.get(\"FirstName\")+ \" \" +pm.variables.get(\"LastName\"));",
+									"",
+									"function domain(){",
+									"    var domain = [\"@gmail.com\",\"@hotmail.com\",\"@yahoo.com\",\"@outlook.com\",\"@aol.com\",\"@icloud.com\",\"@protonmail.com\",\"@gmx.com\",\"@mail.com\",\"@zoho.com\",\"@yandex.com\",\"@live.com\",\"@rocketmail.com\",\"@fastmail.com\",\"@tutanota.com\",\"@inbox.com\",\"@me.com\",\"@rediffmail.com\",\"@sbcglobal.net\",\"@cox.net\",\"@yahoo.co.uk\",\"@att.net\",\"@mail.ru\",\"@optonline.net\",\"@ymail.com\",\"@outlook.com.br\",\"@live.com.mx\",\"@gmx.de\",\"@web.de\",\"@yahoo.com.br\",\"@yandex.ru\",\"@hotmail.fr\",\"@hotmail.co.uk\",\"@yahoo.fr\",\"@outlook.es\",\"@mail.ru\",\"@orange.fr\",\"@libero.it\",\"@hotmail.it\",\"@yahoo.it\",\"@o2.pl\",\"@wp.pl\",\"@interia.pl\",\"@onet.pl\",\"@seznam.cz\",\"@abv.bg\",\"@gmx.at\",\"@gmx.ch\",\"@bluewin.ch\",\"@inbox.lv\",\"@rambler.ru\",\"@mail.bg\",\"@yahoo.ca\",\"@hotmail.ca\",\"@bell.net\",\"@hotmail.com.au\",\"@yahoo.com.au\",\"@t-online.de\",\"@arcor.de\",\"@cox.net\",\"@verizon.net\",\"@yahoo.de\",\"@hotmail.de\",\"@wanadoo.fr\",\"@live.fr\",\"@gmx.fr\",\"@mail.be\",\"@telenet.be\",\"@hotmail.be\",\"@yahoo.co.in\",\"@live.in\",\"@rediffmail.com\",\"@hotmail.in\",\"@indiatimes.com\",\"@yahoo.co.id\",\"@hotmail.co.id\",\"@yahoo.com.sg\",\"@outlook.sg\",\"@hotmail.com.sg\",\"@yahoo.com.ph\",\"@yahoo.com.vn\",\"@yahoo.com.ar\",\"@yahoo.com.mx\",\"@yahoo.com.co\",\"@yahoo.com.pe\",\"@yahoo.com.ve\",\"@yahoo.com.ec\",\"@yahoo.com.bo\",\"@yahoo.com.gt\",\"@yahoo.com.do\",\"@yahoo.com.pa\",\"@yahoo.com.hk\",\"@yahoo.com.tw\",\"@yahoo.com.cn\",\"@yahoo.co.jp\",\"@yahoo.co.kr\",\"@yahoo.co.th\",\"@yahoo.com.my\",\"@yahoo.com.sa\",\"@yahoo.ae\",\"@yahoo.co.il\",\"@yahoo.com.tr\",\"@yahoo.com.eg\",\"@yahoo.com.ng\",\"@yahoo.co.za\",\"@yahoo.com.au\",\"@yahoo.com.nz\",\"@yahoo.com.ph\",\"@yahoo.com.vn\"];",
+									"    var radomItem = domain[Math.floor(Math.random() * domain.length)]",
+									"    return radomItem;",
+									"}",
+									"",
+									"pm.environment.set(\"Domain\", domain());",
+									"",
+									"function mail(){",
+									"    var mail = pm.variables.replaceIn('{{$guid}}') + \"_\" + pm.variables.get(\"FirstName\") + pm.variables.get(\"Domain\");",
+									"    return mail;",
+									"}",
+									"",
+									"pm.environment.set(\"Mail\", mail());"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check Full Name is False\", function () {",
+									"    pm.expect(pm.globals.get(\"Campo_Full_Name_Obrigatorio\")).to.eql(JSON.parse(responseBody).errors[0]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"\",\n    \"mail\": \"{{Mail}}\",\n    \"password\": \"{{Password}}\",\n    \"confirmPassword\": \"{{Password}}\",\n    \"accessProfile\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/signup",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Usuário com Sucesso",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*",
+									"function firstName(){",
+									"\t",
+									"\tvar firstName = [ \"Maria\",\"João\",\"Ana\",\"Pedro\",\"Carla\",\"Lucas\",\"Mariana\",\"Paulo\",\"Camila\",\"Rafael\",\"Juliana\",\"Gustavo\",\"Larissa\",\"Fernando\",\"Amanda\",\"Diego\",\"Isabela\",\"Ricardo\",\"Natália\",\"Henrique\",\"Lívia\",\"Roberto\",\"Sofia\",\"Eduardo\",\"Vitória\",\"Fábio\",\"Mariana\",\"André\",\"Letícia\",\"Rodrigo\",\"Lara\",\"Guilherme\",\"Bianca\",\"Miguel\",\"Alice\",\"Leonardo\",\"Laura\",\"Daniel\",\"Beatriz\",\"Felipe\",\"Luiza\",\"Arthur\",\"Helena\",\"Gabriel\",\"Valentina\",\"Bernardo\",\"Sophia\",\"Vitor\",\"Clara\",\"Francisco\",\"Yasmin\",\"Enzo\",\"Isabel\",\"Isabella\",\"Lorenzo\",\"Joana\",\"Samuel\",\"Melissa\",\"Otávio\",\"Ana\",\"Breno\",\"Cecília\",\"Benjamin\",\"Luana\",\"Mariane\",\"Davi\",\"Nathália\",\"Raul\",\"Isadora\",\"Marcelo\",\"Luna\",\"Nicolas\",\"Laís\",\"Augusto\",\"Stella\",\"Ruan\",\"Gabriela\",\"Luciano\",\"Evelyn\",\"Thiago\",\"Lorena\",\"Vinícius\",\"Catarina\",\"Murilo\",\"Pietra\",\"Tomás\",\"Carolina\",\"Caio\",\"Manuela\",\"Emanuelly\",\"Lavinia\",\"Lucca\",\"Mirella\",\"Kevin\",\"Rebeca\",\"Anthony\",\"Júlia\"];",
+									"",
+									"\tvar randomItem = firstName[Math.floor(Math.random() * firstName.length)];",
+									"",
+									"\treturn randomItem;",
+									"}",
+									"",
+									"pm.environment.set(\"FirstName\", firstName());",
+									"",
+									"function lastName(){",
+									"\t",
+									"\tvar lastName = [\"Silva\",\"Santos\",\"Oliveira\",\"Souza\",\"Rodrigues\",\"Almeida\",\"Costa\",\"Pereira\",\"Carvalho\",\"Ferreira\",\"Gomes\",\"Martins\",\"Rocha\",\"Ribeiro\",\"Alves\",\"Lima\",\"Sousa\",\"Fernandes\",\"Pinto\",\"Cunha\",\"Mendes\",\"Barbosa\",\"Saraiva\",\"Machado\",\"Cardoso\",\"Nogueira\",\"Ramos\",\"Coelho\",\"Araújo\",\"Castro\",\"Fonseca\",\"Rocha\",\"Moreira\",\"Figueiredo\",\"Gonçalves\",\"Monteiro\",\"Marques\",\"Peixoto\",\"Morais\",\"Lopes\",\"Vieira\",\"Tavares\",\"Correia\",\"Neves\",\"Nunes\",\"Cavalcanti\",\"Andrade\",\"Freitas\",\"Coutinho\",\"Rezende\",\"Macedo\",\"Borges\",\"Barros\",\"Melo\",\"Barbosa\",\"Campos\",\"Lemos\",\"Braga\",\"Teixeira\",\"Dias\",\"Albuquerque\",\"Sampaio\",\"Moura\",\"Rocha\",\"Silveira\",\"Aguiar\",\"Abreu\",\"Lima\",\"Pacheco\",\"Vargas\",\"Farias\",\"Moraes\",\"Ferreira\",\"Gusmão\",\"Sousa\",\"Azevedo\",\"Dantas\",\"Cavalcante\",\"Batista\",\"Peixoto\",\"Pires\",\"Leite\",\"Ramos\",\"Macedo\",\"Sales\",\"Carneiro\",\"Monteiro\",\"Goulart\",\"Cruz\",\"Fialho\",\"Xavier\",\"Prado\",\"Valente\",\"Furtado\",\"Vieira\"];",
+									"",
+									"\tvar randomItem = lastName[Math.floor(Math.random() * lastName.length)];",
+									"",
+									"\treturn randomItem;",
+									"}",
+									"",
+									"pm.environment.set(\"LastName\", lastName());",
+									"",
+									"pm.environment.set(\"FullName\", pm.variables.get(\"FirstName\")+ \" \" +pm.variables.get(\"LastName\"));",
+									"",
+									"function domain(){",
+									"    var domain = [\"@gmail.com\",\"@hotmail.com\",\"@yahoo.com\",\"@outlook.com\",\"@aol.com\",\"@icloud.com\",\"@protonmail.com\",\"@gmx.com\",\"@mail.com\",\"@zoho.com\",\"@yandex.com\",\"@live.com\",\"@rocketmail.com\",\"@fastmail.com\",\"@tutanota.com\",\"@inbox.com\",\"@me.com\",\"@rediffmail.com\",\"@sbcglobal.net\",\"@cox.net\",\"@yahoo.co.uk\",\"@att.net\",\"@mail.ru\",\"@optonline.net\",\"@ymail.com\",\"@outlook.com.br\",\"@live.com.mx\",\"@gmx.de\",\"@web.de\",\"@yahoo.com.br\",\"@yandex.ru\",\"@hotmail.fr\",\"@hotmail.co.uk\",\"@yahoo.fr\",\"@outlook.es\",\"@mail.ru\",\"@orange.fr\",\"@libero.it\",\"@hotmail.it\",\"@yahoo.it\",\"@o2.pl\",\"@wp.pl\",\"@interia.pl\",\"@onet.pl\",\"@seznam.cz\",\"@abv.bg\",\"@gmx.at\",\"@gmx.ch\",\"@bluewin.ch\",\"@inbox.lv\",\"@rambler.ru\",\"@mail.bg\",\"@yahoo.ca\",\"@hotmail.ca\",\"@bell.net\",\"@hotmail.com.au\",\"@yahoo.com.au\",\"@t-online.de\",\"@arcor.de\",\"@cox.net\",\"@verizon.net\",\"@yahoo.de\",\"@hotmail.de\",\"@wanadoo.fr\",\"@live.fr\",\"@gmx.fr\",\"@mail.be\",\"@telenet.be\",\"@hotmail.be\",\"@yahoo.co.in\",\"@live.in\",\"@rediffmail.com\",\"@hotmail.in\",\"@indiatimes.com\",\"@yahoo.co.id\",\"@hotmail.co.id\",\"@yahoo.com.sg\",\"@outlook.sg\",\"@hotmail.com.sg\",\"@yahoo.com.ph\",\"@yahoo.com.vn\",\"@yahoo.com.ar\",\"@yahoo.com.mx\",\"@yahoo.com.co\",\"@yahoo.com.pe\",\"@yahoo.com.ve\",\"@yahoo.com.ec\",\"@yahoo.com.bo\",\"@yahoo.com.gt\",\"@yahoo.com.do\",\"@yahoo.com.pa\",\"@yahoo.com.hk\",\"@yahoo.com.tw\",\"@yahoo.com.cn\",\"@yahoo.co.jp\",\"@yahoo.co.kr\",\"@yahoo.co.th\",\"@yahoo.com.my\",\"@yahoo.com.sa\",\"@yahoo.ae\",\"@yahoo.co.il\",\"@yahoo.com.tr\",\"@yahoo.com.eg\",\"@yahoo.com.ng\",\"@yahoo.co.za\",\"@yahoo.com.au\",\"@yahoo.com.nz\",\"@yahoo.com.ph\",\"@yahoo.com.vn\"];",
+									"    var radomItem = domain[Math.floor(Math.random() * domain.length)]",
+									"    return radomItem;",
+									"}",
+									"",
+									"pm.environment.set(\"Domain\", domain());",
+									"",
+									"function mail(){",
+									"    var mail = pm.variables.replaceIn('{{$guid}}') + \"_\" + pm.variables.get(\"FirstName\") + pm.variables.get(\"Domain\");",
+									"    return mail;",
+									"}",
+									"",
+									"pm.environment.set(\"Mail\", mail());",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\",pm.variables.replaceIn(JSON.parse(responseBody).token));",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check fullName is true\", function () {",
+									"    pm.expect(pm.variables.get(\"FullName\")).to.eql(JSON.parse(responseBody).user.fullName)",
+									"});",
+									"",
+									"pm.test(\"Check mail is true\", function () {",
+									"    pm.expect(pm.variables.get(\"Mail\")).to.eql(JSON.parse(responseBody).user.mail);",
+									"});",
+									"",
+									"pm.test(\"Check mail is true\", function () {",
+									"    pm.expect(\"admin\").to.eql(JSON.parse(responseBody).user.accessProfile);",
+									"});",
+									"",
+									"function tokenResult(){",
+									"    if (JSON.parse(responseBody).token !== null){",
+									"        var tokenResult = true",
+									"    }else{",
+									"        var tokenResult = false",
+									"    }",
+									"    return tokenResult",
+									"}",
+									"",
+									"pm.test(\"Check token is true\", function () {",
+									"    pm.expect(true).to.eql(tokenResult());",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"{{FullName}}\",\n    \"mail\": \"{{Mail}}\",\n    \"password\": \"{{Password}}\",\n    \"confirmPassword\": \"{{Password}}\",\n    \"accessProfile\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/signup",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email Obrigatório",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check Mail is False\", function () {",
+									"    pm.expect(pm.globals.get(\"Campo_email_Invalido\")).to.eql(JSON.parse(responseBody).alert[0]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"{{FullName}}\",\n    \"mail\": \"\",\n    \"password\": \"{{Password}}\",\n    \"confirmPassword\": \"{{Password}}\",\n    \"accessProfile\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/signup",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Senha Fora do padrao Obrigatorio",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check Password is False\", function () {",
+									"    pm.expect(pm.globals.get(\"Senha_invalida\")).to.eql(JSON.parse(responseBody).alert[0]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"{{FullName}}\",\n    \"mail\": \"{{Mail}}\",\n    \"password\": \"\",\n    \"confirmPassword\": \"{{Password}}\",\n    \"accessProfile\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/signup",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmacao de Senha diferente",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check Password is False\", function () {",
+									"    pm.expect(pm.globals.get(\"Confirm_Password\")).to.eql(JSON.parse(responseBody).alert[0]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"{{FullName}}\",\n    \"mail\": \"{{Mail}}\",\n    \"password\": \"{{Password}}\",\n    \"confirmPassword\": \"\",\n    \"accessProfile\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/signup",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Access Profile Obrigatorio",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"{{FullName}}\",\n    \"mail\": \"{{Mail}}\",\n    \"password\": \"{{Password}}\",\n    \"confirmPassword\": \"{{Password}}\",\n    \"accessProfile\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/signup",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login com sucesso",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//let jsonData = pm.response.json",
+									"//pm.environment.set(\"token\", jsonData.token)",
+									"",
+									"pm.environment.set(\"token\",pm.variables.replaceIn(JSON.parse(responseBody).token));",
+									"",
+									"pm.test(\"Status code is 200 \", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mail\": \"{{Mail}}\",\n    \"password\": \"{{Password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/login",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "E-mail em branco",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 \", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Dados Invalidos\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_LOGIN_FAILED\")).to.eql(JSON.parse(responseBody).alert[0]);",
+									"});",
+									"",
+									"/*pm.test(\"Check Full Nams is True\", function () {",
+									"    pm.expect(pm.variables.get(\"FullName\")).to.eql(JSON.parse(responseBody).fullName);",
+									"});*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mail\": \"\",\n    \"password\": \"testeste\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/login",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "E-mail incorreto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 \", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Dados Invalidos\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_LOGIN_FAILED\")).to.eql(JSON.parse(responseBody).alert[0]);",
+									"});",
+									"",
+									"/*pm.test(\"Check Full Nams is True\", function () {",
+									"    pm.expect(pm.variables.get(\"FullName\")).to.eql(JSON.parse(responseBody).fullName);",
+									"});*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mail\": \"ewrwerw@sdfs\",\n    \"password\": \"testeste\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/login",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Senha em branco",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 \", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Dados Invalidos\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_LOGIN_FAILED\")).to.eql(JSON.parse(responseBody).alert[0]);",
+									"});",
+									"",
+									"/*pm.test(\"Check Full Nams is True\", function () {",
+									"    pm.expect(pm.variables.get(\"FullName\")).to.eql(JSON.parse(responseBody).fullName);",
+									"});*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mail\": \"teste@teste.com.br\",\n    \"password\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/login",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Senha incorreta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 \", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Dados Invalidos\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_LOGIN_FAILED\")).to.eql(JSON.parse(responseBody).alert[0]);",
+									"});",
+									"",
+									"/*pm.test(\"Check Full Nams is True\", function () {",
+									"    pm.expect(pm.variables.get(\"FullName\")).to.eql(JSON.parse(responseBody).fullName);",
+									"});*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mail\": \"teste@teste.com.br\",\n    \"password\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/login",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "E-mail fora do padrao",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 \", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Dados Invalidos\", function () {",
+									"        pm.expect(pm.variables.get(\"MESSAGE_LOGIN_FAILED\")).to.eql(JSON.parse(responseBody).alert[0]);",
+									"});",
+									"",
+									"/*pm.test(\"Check Full Nams is True\", function () {",
+									"    pm.expect(pm.variables.get(\"FullName\")).to.eql(JSON.parse(responseBody).fullName);",
+									"});*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mail\": \"teste@teste.com.br\",\n    \"password\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url2}}/api/login",
+							"host": [
+								"{{url2}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

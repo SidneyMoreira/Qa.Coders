@@ -1,0 +1,69 @@
+{
+	"id": "c024697d-6076-48f6-94cb-78ce0fea8546",
+	"name": "TreinamentoPostmanAdvanced",
+	"values": [
+		{
+			"key": "url2",
+			"value": "https://postman-treinamento.qacoders-academy.com.br",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MESSAGE_LOGIN_SUCCESS",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MESSAGE_LOGIN_FAILED",
+			"value": "Os dados informados são inválidos",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MESSAGE_ERROR_TOKEN",
+			"value": "No token provided.",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "FirstName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "LastName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "FullName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Mail",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Domain",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-07-08T02:28:08.801Z",
+	"_postman_exported_using": "Postman/10.15.8"
+}
