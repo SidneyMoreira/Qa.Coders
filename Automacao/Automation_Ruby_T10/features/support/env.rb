@@ -1,11 +1,13 @@
 require 'capybara/cucumber'
 require 'capybara/rspec'
+require 'capybara/dsl'
 require 'selenium-webdriver'
 require 'site_prism'
 require 'pry'
 require_relative 'prints.rb'
+require_relative 'pages_helpers.rb'
 
-World(Prints)
+World(Prints, Pages)
 
 ENVIRONMENT = ENV['ENVIRONMENT']
 puts "Environment >> #{ENVIRONMENT}"

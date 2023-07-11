@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+#gem 'webdrivers', '~> 5.0', require: false 
 gem 'chromedriver-helper'
 gem 'selenium-webdriver'
 gem 'capybara'
@@ -7,3 +8,12 @@ gem 'rspec'
 gem 'site_prism'
 gem 'cucumber'
 gem 'pry'
+
+#quando for usar no projeto colocar:
+#require 'webdrivers'
+
+#ou especifico 
+#require 'webdrivers/chromedriver'
+#require 'webdrivers/geckodriver'
+#require 'webdrivers/iedriver'
+#require 'webdrivers/edgedriver'

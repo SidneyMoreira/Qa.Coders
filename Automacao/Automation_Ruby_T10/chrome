@@ -1,4 +1,13 @@
+Using the default, pretty, html and development profiles...
+[90m#language: pt[0m
+Funcionalidade: Login
 
-0 scenarios
-0 steps
-0m0.000s
+  Cenario: Realizar login com sucesso                 [90m# features/specs/login.feature:5[0m
+    [32mDado que eu esteja na tela de [32m[1m"login"[0m[0m[32m[90m             # features/step_definitions/login.rb:1[0m[0m
+    [32mQuando preencho o formulário de [32m[1m"Login de acesso"[0m[0m[32m[90m # features/step_definitions/login.rb:6[0m[0m
+    [32mE clico no botão [32m[1m"Entrar"[0m[0m[32m[90m                         # features/step_definitions/login.rb:10[0m[0m
+    [33mEntao devo ser redirecionado para tela [33m[1m"Home"[0m[0m[33m[90m     # features/step_definitions/login.rb:14[0m[0m
+
+1 scenario ([33m1 pending[0m)
+4 steps ([33m1 pending[0m, [32m3 passed[0m)
+0m15.052s
