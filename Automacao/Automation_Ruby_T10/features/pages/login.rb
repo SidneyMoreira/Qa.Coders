@@ -9,8 +9,8 @@ class Login < SitePrism::Page
     element :sair, :xpath, '//button[text()="Sair"]'
     
     def to_fill_in_login(string)
-        mail.set 'xxxxxx@xxxxxxx'
-        password.set 'xxxx'
+        mail.set 'xxxxx@xxxx.xxx'
+        password.set 'XxxxXxxX'
     end
 
     def click_button()

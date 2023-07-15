@@ -1,4 +1,4 @@
-require_relative 'prints'
+require_relative 'prints.rb'
 
 Before do |scenario|
     Capybara.current_session.driver.browser.manage.delete_all_cookies
@@ -14,8 +14,8 @@ After do |scenario|
     name = "#{hour}-#{scenarioFolder}"
 
     if scenario.failed?
-        Prints.take_screenshot(name, "#{folder_p}/test_failed")
+        take_screenshot(name, "#{folder_p}/test_failed")
     else
-        Prints.take_screenshot(name, "#{folder_p}/test_passed")
+        take_screenshot(name, "#{folder_p}/test_passed")
     end
 end
